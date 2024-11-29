@@ -4,6 +4,7 @@ import { AppService } from "./app.service";
 import { AuthModule } from "src/auth/auth.module";
 import { ConfigModule } from "@nestjs/config";
 import { MoviesModule } from "src/movies/movies.module";
+import { TMDBModule } from "src/tmdb/tmdb.module";
 
 @Module({
   imports: [
@@ -12,6 +13,7 @@ import { MoviesModule } from "src/movies/movies.module";
     }),
     AuthModule,
     MoviesModule,
+    TMDBModule,
   ],
   controllers: [AppController],
   providers: [AppService],

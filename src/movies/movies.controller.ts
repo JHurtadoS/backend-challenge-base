@@ -30,6 +30,7 @@ export class MoviesController {
         title: string;
         rating: number;
         horizontal_image: string;
+        vertical_image_large: string;
         isFavorite: boolean;
       }>;
     }>
@@ -54,6 +55,7 @@ export class MoviesController {
         title: string;
         rating: number;
         horizontal_image: string;
+        vertical_image_large: string;
       }>;
     }>
   > {
@@ -101,9 +103,15 @@ export class MoviesController {
   }
 
   @Get("recommendations")
-  public async getRecommendations(
-    @Query("movieId") movieId: string,
-  ): Promise<Array<{ id: string; title: string; rating: number; horizontal_image: string }>> {
+  public async getRecommendations(@Query("movieId") movieId: string): Promise<
+    Array<{
+      id: string;
+      title: string;
+      rating: number;
+      horizontal_image: string;
+      vertical_image_large: string;
+    }>
+  > {
     if (!movieId) {
       throw new BadRequestException("movieId is required.");
     }
@@ -122,6 +130,7 @@ export class MoviesController {
         title: string;
         rating: number;
         horizontal_image: string;
+        vertical_image_large: string;
         isFavorite: boolean;
       }>;
     }>
