@@ -154,6 +154,7 @@ export class MoviesController {
     vertical_image_small?: string | null;
     vertical_image_large?: string | null;
     category_id?: string | null;
+    genres: Array<{ id: string; name: string }>;
   }> {
     return this.moviesService.getMovieById(id);
   }

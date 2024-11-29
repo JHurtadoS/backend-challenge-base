@@ -71,18 +71,49 @@ export class MoviesService {
     vertical_image_small?: string | null;
     vertical_image_large?: string | null;
     category_id?: string | null;
+    genres: Array<{ id: string; name: string }>;
   }> {
-    const { data, error } = await this.supabaseClient
+    const { data: movie, error: movieError } = await this.supabaseClient
       .from("movies")
-      .select("*")
+      .select(
+        `
+      *,
+      genres:movie_genres(
+        genre:genres(
+          id,
+          name
+        )
+      )
+    `,
+      )
       .eq("id", id)
       .single();
 
-    if (error) {
-      throw new Error(`Error fetching movie by ID: ${error.message}`);
+    if (movieError) {
+      throw new Error(`Error fetching movie by ID: ${movieError.message}`);
     }
 
-    return data;
+    // Mapear los géneros
+    // Mapear los géneros
+    const genres = (movie.genres || [])
+      .filter((g) => g.genre !== null) // Filtrar nulos
+      .map((g) => ({
+        id: g.genre?.id || "unknown", // Manejo por defecto si es null
+        name: g.genre?.name || "Unnamed Genre",
+      }));
+
+    return {
+      id: movie.id,
+      title: movie.title,
+      rating: movie.rating,
+      horizontal_image: movie.horizontal_image,
+      release_date: movie.release_date,
+      trailer_url: movie.trailer_url,
+      vertical_image_small: movie.vertical_image_small,
+      vertical_image_large: movie.vertical_image_large,
+      category_id: movie.category_id,
+      genres,
+    };
   }
 
   public async updateFavorites(
