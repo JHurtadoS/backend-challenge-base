@@ -4,7 +4,7 @@ import { lastValueFrom } from "rxjs";
 
 @Injectable()
 export class TMDBService {
-  private readonly apiKey = process.env.TMDB_API_KEY; // API Key configurada en tu .env
+  private readonly apiKey = process.env.TMDB_API_KEY;
 
   public constructor(private readonly httpService: HttpService) {}
 
@@ -17,9 +17,9 @@ export class TMDBService {
     movies: Array<{
       id: string;
       title: string;
-      rating: number; // Normalizado de 0 a 1
+      rating: number;
       release_date: string;
-      vertical_image_large: string; // Cambiado de poster
+      vertical_image_large: string;
     }>;
   }> {
     const response = await lastValueFrom(
@@ -37,9 +37,9 @@ export class TMDBService {
       movies: response.data.results.map((movie) => ({
         id: movie.id,
         title: movie.title,
-        rating: movie.vote_average / 10, // Normalización
+        rating: movie.vote_average / 10,
         release_date: movie.release_date,
-        vertical_image_large: `https://image.tmdb.org/t/p/w500${movie.poster_path}`, // Renombrado y construcción de URL
+        vertical_image_large: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
       })),
     };
   }

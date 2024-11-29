@@ -94,7 +94,7 @@ export class MoviesController {
 
     return this.moviesService.createMovie({
       title: body.title,
-      rating: parseFloat(body.rating), // Convertir a número
+      rating: parseFloat(body.rating),
       release_date: body.release_date,
       category_id: body.category_id,
       trailer_url: body.trailer_url,

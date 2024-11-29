@@ -12,7 +12,7 @@ import { TMDBController } from "./tmdb.controller";
     }),
   ],
   providers: [TMDBService],
-  controllers: [TMDBController], // Aquí registramos el controlador
+  controllers: [TMDBController],
   exports: [TMDBService],
 })
 export class TMDBModule {}
