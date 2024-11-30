@@ -26,6 +26,7 @@ export class MoviesService {
         id: string;
         title: string;
         rating: number;
+        release_date: string;
         horizontal_image: string;
         vertical_image_large: string;
         isFavorite: boolean;
@@ -40,7 +41,9 @@ export class MoviesService {
 
     const { data, error } = await this.supabaseClient
       .from("categories")
-      .select(`name, movies(id, title, rating, horizontal_image,vertical_image_large)`);
+      .select(
+        `name, movies(id, title, rating, horizontal_image,vertical_image_large,release_date)`,
+      );
 
     if (error) {
       throw new Error(`Error fetching movies by category: ${error.message}`);
@@ -53,6 +56,7 @@ export class MoviesService {
         title: movie.title,
         rating: movie.rating ?? 0,
         horizontal_image: movie.horizontal_image || "",
+        release_date: movie.release_date || "",
         vertical_image_large: movie.vertical_image_large || "",
         isFavorite: favoriteMovieIds.includes(movie.id),
       })),
@@ -143,6 +147,7 @@ export class MoviesService {
         id: string;
         title: string;
         rating: number;
+        release_date: string;
         horizontal_image: string;
         vertical_image_large: string;
       }>;
@@ -159,6 +164,7 @@ export class MoviesService {
         rating,
         horizontal_image,
         vertical_image_large,
+        release_date,
         category_id
       )
     `,
@@ -197,6 +203,7 @@ export class MoviesService {
           id: fav.movies?.id || "Unknown ID",
           title: fav.movies?.title || "Untitled",
           rating: fav.movies?.rating ?? 0,
+          release_date: fav.movies?.title || "No date",
           horizontal_image: fav.movies?.horizontal_image || "No image available",
           vertical_image_large: fav.movies?.horizontal_image || "No image available",
         }));
@@ -360,6 +367,7 @@ export class MoviesService {
         title: string;
         rating: number;
         horizontal_image: string;
+        release_date: string;
         vertical_image_large: string;
         isFavorite: boolean;
       }>;
@@ -379,6 +387,7 @@ export class MoviesService {
         title,
         rating,
         horizontal_image,
+        release_date,
         vertical_image_large,
         movie_genres(genre_id)
       )
@@ -402,6 +411,7 @@ export class MoviesService {
           title: movie.title,
           rating: movie.rating ?? 0,
           horizontal_image: movie.horizontal_image || "",
+          release_date: movie.release_date || "",
           vertical_image_large: movie.vertical_image_large || "",
           isFavorite: favoriteMovieIds.includes(movie.id),
         })),

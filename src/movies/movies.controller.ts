@@ -30,6 +30,7 @@ export class MoviesController {
         title: string;
         rating: number;
         horizontal_image: string;
+        release_date: string;
         vertical_image_large: string;
         isFavorite: boolean;
       }>;
@@ -54,6 +55,7 @@ export class MoviesController {
         id: string;
         title: string;
         rating: number;
+        release_date: string;
         horizontal_image: string;
         vertical_image_large: string;
       }>;
@@ -129,6 +131,7 @@ export class MoviesController {
         id: string;
         title: string;
         rating: number;
+        release_date: string;
         horizontal_image: string;
         vertical_image_large: string;
         isFavorite: boolean;
