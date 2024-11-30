@@ -226,6 +226,7 @@ export class MoviesService {
     vertical_image_small?: Express.Multer.File;
     vertical_image_large?: Express.Multer.File;
     trailer_url: string;
+    description: string;
   }): Promise<string> {
     const bucketName = "movies-images";
     const imageUrls: Record<string, string | null> = {
@@ -281,6 +282,7 @@ export class MoviesService {
       trailer_url: data.trailer_url,
       vertical_image_small: imageUrls.vertical_image_small,
       vertical_image_large: imageUrls.vertical_image_large,
+      description: data.description,
     });
 
     if (insertError) {

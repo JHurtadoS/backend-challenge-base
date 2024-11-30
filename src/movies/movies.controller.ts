@@ -86,6 +86,7 @@ export class MoviesController {
       release_date: string;
       category_id: string;
       trailer_url: string;
+      description: string;
     },
   ): Promise<string> {
     const images = {
@@ -99,6 +100,7 @@ export class MoviesController {
       rating: parseFloat(body.rating),
       release_date: body.release_date,
       category_id: body.category_id,
+      description: body.description,
       trailer_url: body.trailer_url,
       ...images,
     });
