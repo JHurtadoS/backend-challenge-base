@@ -158,6 +158,7 @@ export class MoviesController {
     trailer_url?: string | null;
     vertical_image_small?: string | null;
     vertical_image_large?: string | null;
+    isFavorite: boolean;
     category_id?: string | null;
     genres: Array<{ id: string; name: string }>;
   }> {

@@ -65,7 +65,10 @@ export class MoviesService {
     return cleanedData;
   }
 
-  public async getMovieById(id: string): Promise<{
+  public async getMovieById(
+    id: string,
+    userLogged?: string,
+  ): Promise<{
     id: string;
     title: string;
     rating: number | null;
@@ -74,9 +77,22 @@ export class MoviesService {
     trailer_url?: string | null;
     vertical_image_small?: string | null;
     vertical_image_large?: string | null;
+    isFavorite: boolean;
     category_id?: string | null;
     genres: Array<{ id: string; name: string }>;
   }> {
+    const isFavoriteData =
+      userLogged &&
+      (
+        await this.supabaseClient
+          .from("favorites")
+          .select("movie_id")
+          .eq("user_id", userLogged)
+          .eq("movie_id", id)
+      ).data;
+
+    const isFavorite = isFavoriteData && isFavoriteData.length ? true : false;
+
     const { data: movie, error: movieError } = await this.supabaseClient
       .from("movies")
       .select(
@@ -98,7 +114,6 @@ export class MoviesService {
     }
 
     // Mapear los géneros
-    // Mapear los géneros
     const genres = (movie.genres || [])
       .filter((g) => g.genre !== null) // Filtrar nulos
       .map((g) => ({
@@ -117,6 +132,7 @@ export class MoviesService {
       vertical_image_large: movie.vertical_image_large,
       category_id: movie.category_id,
       genres,
+      isFavorite,
     };
   }
 
