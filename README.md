@@ -39,14 +39,6 @@ Antes de ejecutar el proyecto, asegúrate de configurar las siguientes variables
    ```bash
    npm install
 
-
-### Instrucciones para usar el archivo:
-1. **Abre tu editor de texto preferido** (por ejemplo, VS Code, Sublime Text, etc.).
-2. **Crea un nuevo archivo** y nómbralo `README.md`.
-3. **Copia y pega** el contenido proporcionado en el archivo.
-4. **Guarda el archivo** en la raíz de tu proyecto backend.
-
-
 ## **Licencia y Derechos de Autor**
 
 El diseño y la implementación del backend fueron creados por el equipo de desarrollo como parte de un proyecto personal y educativo. El código fuente de este proyecto está protegido por derechos de autor, a menos que se indique lo contrario.
