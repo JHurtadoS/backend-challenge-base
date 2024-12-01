@@ -149,7 +149,10 @@ export class MoviesController {
   }
 
   @Get(":id")
-  public async getMovieById(@Param("id") id: string): Promise<{
+  public async getMovieById(
+    @Param("id") id: string,
+    @Query("userLogged") userLogged?: string,
+  ): Promise<{
     id: string;
     title: string;
     rating: number | null;
@@ -162,6 +165,6 @@ export class MoviesController {
     category_id?: string | null;
     genres: Array<{ id: string; name: string }>;
   }> {
-    return this.moviesService.getMovieById(id);
+    return this.moviesService.getMovieById(id, userLogged);
   }
 }
