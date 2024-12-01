@@ -1,73 +1,65 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# Backend - Películas API
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+Este es el backend del proyecto, desarrollado con **NestJS** y **Supabase**, que gestiona la información de las películas, usuarios y la interacción con la API de **TMDB**. Además, se encarga de la autenticación de usuarios y el almacenamiento de imágenes en **Supabase**.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## **Tecnologías Utilizadas**
+- **NestJS**: Framework backend para Node.js.
+- **Supabase**: Base de datos, autenticación y almacenamiento en la nube.
+- **TMDB API**: API externa para obtener información sobre películas.
+- **PostgreSQL**: Base de datos relacional utilizada por Supabase.
 
-## Description
+## **Endpoints Principales**
+1. **Autenticación**
+   - `POST /auth/register`: Registrar un nuevo usuario.
+   - `POST /auth/login`: Iniciar sesión y obtener un token de acceso.
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+2. **Películas**
+   - `GET /movies`: Obtener una lista de películas agrupadas por categorías.
+   - `POST /movies/favorites`: Agregar una película a los favoritos de un usuario.
+   - `GET /movies/favorites`: Obtener las películas favoritas de un usuario.
+   - `POST /movies/create`: Crear una nueva película.
+   - `GET /movies/recommendations`: Obtener recomendaciones basadas en una película.
+   - `GET /movies/by-genre`: Obtener películas por género.
+   - `GET /movies/genres`: Obtener una lista de géneros.
+   - `GET /movies/:id`: Obtener detalles de una película por su ID.
 
-## Installation
+3. **TMDB**
+   - `GET /tmdb/popular`: Obtener las películas populares desde la API de TMDB.
 
-```bash
-$ pnpm install
-```
+## **Variables de Entorno**
+Antes de ejecutar el proyecto, asegúrate de configurar las siguientes variables de entorno en tu archivo `.env`:
+- `SUPABASE_URL`: URL de tu proyecto en Supabase.
+- `SUPABASE_SERVICE_KEY`: Clave privada para interactuar con Supabase.
+- `SUPABASE_PUBLIC_ANON_KEY`: Clave pública para las operaciones de lectura/escritura.
+- `TMDB_API_KEY`: Clave de API de TMDB.
+- `TMDB_BASE_URL`: URL base de la API de TMDB.
 
-## Running the app
+## **Iniciar el Proyecto**
+1. Instala las dependencias:
+   ```bash
+   npm install
 
-```bash
-# development
-$ pnpm run start
 
-# watch mode
-$ pnpm run start:dev
+### Instrucciones para usar el archivo:
+1. **Abre tu editor de texto preferido** (por ejemplo, VS Code, Sublime Text, etc.).
+2. **Crea un nuevo archivo** y nómbralo `README.md`.
+3. **Copia y pega** el contenido proporcionado en el archivo.
+4. **Guarda el archivo** en la raíz de tu proyecto backend.
 
-# production mode
-$ pnpm run start:prod
-```
 
-## Test
+## **Licencia y Derechos de Autor**
 
-```bash
-# unit tests
-$ pnpm run test
+El diseño y la implementación del backend fueron creados por el equipo de desarrollo como parte de un proyecto personal y educativo. El código fuente de este proyecto está protegido por derechos de autor, a menos que se indique lo contrario.
 
-# e2e tests
-$ pnpm run test:e2e
+### **Licencia**
+Este proyecto está licenciado bajo la **Licencia MIT**. Puedes usar, copiar, modificar y distribuir el código de este proyecto, siempre y cuando incluyas la misma licencia en las distribuciones.
 
-# test coverage
-$ pnpm run test:cov
-```
+### **Uso de APIs**
+Este proyecto hace uso de la **API de TMDB** para obtener información sobre películas. El uso de esta API está sujeto a los términos y condiciones establecidos por **TMDB**. Puedes consultar su documentación en: [TMDB Terms of Service](https://www.themoviedb.org/terms-of-use).
 
-## Support
+### **Créditos de Diseño**
+El diseño de la base de datos y la estructura del backend siguen principios de arquitectura limpia y modular, con un enfoque en escalabilidad y mantenimiento. Los componentes clave del sistema (como la autenticación y la gestión de películas) están implementados siguiendo las mejores prácticas recomendadas por la comunidad de **NestJS**.
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
 
-## Stay in touch
+Este archivo contiene toda la información esencial sobre cómo configurar, ejecutar y desplegar el backend. Si necesitas algún ajuste o tienes dudas, ¡avísame! 😊
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
